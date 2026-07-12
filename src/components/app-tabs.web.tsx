@@ -7,7 +7,7 @@ import {
   TabListProps,
 } from 'expo-router/ui';
 import { SymbolView } from 'expo-symbols';
-import { Pressable, useColorScheme, View, StyleSheet } from 'react-native';
+import { Pressable, useColorScheme, View, StyleSheet, useWindowDimensions } from 'react-native';
 
 import { ExternalLink } from './external-link';
 import { ThemedText } from './themed-text';
@@ -22,10 +22,13 @@ export default function AppTabs() {
       <TabList asChild>
         <CustomTabList>
           <TabTrigger name="home" href="/" asChild>
-            <TabButton>Home</TabButton>
+            <TabButton>Dashboard</TabButton>
           </TabTrigger>
           <TabTrigger name="explore" href="/explore" asChild>
-            <TabButton>Explore</TabButton>
+            <TabButton>Products</TabButton>
+          </TabTrigger>
+          <TabTrigger name="inventory" href="/inventory" asChild>
+            <TabButton>Add / Restock</TabButton>
           </TabTrigger>
         </CustomTabList>
       </TabList>
@@ -39,7 +42,7 @@ export function TabButton({ children, isFocused, ...props }: TabTriggerSlotProps
       <ThemedView
         type={isFocused ? 'backgroundSelected' : 'backgroundElement'}
         style={styles.tabButtonView}>
-        <ThemedText type="small" themeColor={isFocused ? 'text' : 'textSecondary'}>
+        <ThemedText type="smallBold" themeColor={isFocused ? 'text' : 'textSecondary'}>
           {children}
         </ThemedText>
       </ThemedView>
@@ -50,26 +53,49 @@ export function TabButton({ children, isFocused, ...props }: TabTriggerSlotProps
 export function CustomTabList(props: TabListProps) {
   const scheme = useColorScheme();
   const colors = Colors[scheme === 'unspecified' ? 'light' : scheme];
+  const { width } = useWindowDimensions();
+  const isMobile = width < 600;
 
   return (
-    <View {...props} style={styles.tabListContainer}>
-      <ThemedView type="backgroundElement" style={styles.innerContainer}>
-        <ThemedText type="smallBold" style={styles.brandText}>
-          Expo Starter
-        </ThemedText>
+    <View 
+      {...props} 
+      style={[
+        styles.tabListContainer, 
+        isMobile ? { bottom: 0 } : { top: 0 }
+      ]}
+    >
+      <ThemedView 
+        type="backgroundElement" 
+        style={[
+          styles.innerContainer, 
+          isMobile ? [styles.innerContainerMobile, { borderColor: colors.backgroundSelected }] : null
+        ]}
+      >
+        {!isMobile && (
+          <ThemedText type="smallBold" style={styles.brandText}>
+            Squishy World 🌸
+          </ThemedText>
+        )}
+        {isMobile && (
+          <ThemedText type="smallBold" style={styles.brandText}>
+            🌸
+          </ThemedText>
+        )}
 
         {props.children}
 
-        <ExternalLink href="https://docs.expo.dev" asChild>
-          <Pressable style={styles.externalPressable}>
-            <ThemedText type="link">Docs</ThemedText>
-            <SymbolView
-              tintColor={colors.text}
-              name={{ ios: 'arrow.up.right.square', web: 'link' }}
-              size={12}
-            />
-          </Pressable>
-        </ExternalLink>
+        {!isMobile && (
+          <ExternalLink href="https://docs.expo.dev" asChild>
+            <Pressable style={styles.externalPressable}>
+              <ThemedText type="link">Docs</ThemedText>
+              <SymbolView
+                tintColor={colors.text}
+                name={{ ios: 'arrow.up.right.square', web: 'link' }}
+                size={12}
+              />
+            </Pressable>
+          </ExternalLink>
+        )}
       </ThemedView>
     </View>
   );
@@ -78,11 +104,13 @@ export function CustomTabList(props: TabListProps) {
 const styles = StyleSheet.create({
   tabListContainer: {
     position: 'absolute',
-    width: '100%',
+    left: 0,
+    right: 0,
     padding: Spacing.three,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
+    zIndex: 100,
   },
   innerContainer: {
     paddingVertical: Spacing.two,
@@ -93,6 +121,19 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     gap: Spacing.two,
     maxWidth: MaxContentWidth,
+  },
+  innerContainerMobile: {
+    paddingHorizontal: Spacing.three,
+    paddingVertical: Spacing.two,
+    borderRadius: 24,
+    gap: Spacing.two,
+    justifyContent: 'space-between',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: -4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 8,
+    borderWidth: 1,
   },
   brandText: {
     marginRight: 'auto',
