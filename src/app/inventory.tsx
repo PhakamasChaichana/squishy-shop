@@ -233,7 +233,10 @@ export default function InventoryScreen() {
                     const isLowStock = (p.stock || 0) < 10;
                     return (
                       <ThemedView key={p.id} type="backgroundElement" style={styles.mobileRow}>
-                        <Image source={p.image} style={styles.mobileThumbnail} />
+                        <Image
+                          source={typeof p.image === 'string' ? { uri: p.image } : p.image}
+                          style={styles.mobileThumbnail}
+                        />
                         <View style={styles.mobileRowContent}>
                           <ThemedText type="smallBold" numberOfLines={1}>
                             {p.name}
@@ -300,7 +303,10 @@ export default function InventoryScreen() {
                   {products.map((p) => (
                     <ThemedView key={p.id} type="backgroundElement" style={styles.tableRow}>
                       <View style={[styles.tableCell, { flex: 1.2, flexDirection: 'row', alignItems: 'center', gap: Spacing.two }]}>
-                        <Image source={p.image} style={styles.thumbnail} />
+                        <Image
+                          source={typeof p.image === 'string' ? { uri: p.image } : p.image}
+                          style={styles.thumbnail}
+                        />
                         <View style={{ flex: 1 }}>
                           <ThemedText type="smallBold" numberOfLines={1}>
                             {p.name}

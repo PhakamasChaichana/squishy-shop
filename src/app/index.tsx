@@ -128,6 +128,12 @@ export default function HomeScreen() {
                   <ThemedView key={item.id} type="backgroundElement" style={[styles.alertRow, { borderColor: '#FF4D4D' }]}>
                     <View style={styles.alertItemLeft}>
                       <Image source={item.image} style={styles.alertThumbnail} />
+
+                      <Image
+                        source={typeof item.image === 'string' ? { uri: item.image } : item.image}
+                        style={styles.alertThumbnail}
+                        resizeMode="cover"
+                      />
                       <View style={{ flex: 1, marginLeft: Spacing.two }}>
                         <ThemedText type="smallBold" numberOfLines={1}>{item.name}</ThemedText>
                         <ThemedText type="small" style={{ color: '#FF4D4D', fontWeight: 'bold' }}>

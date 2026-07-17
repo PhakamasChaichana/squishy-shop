@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 export interface Product {
   id: string;
@@ -29,7 +29,7 @@ interface CartContextType {
   clearCart: () => void;
   cartCount: number;
   cartTotal: number;
-  
+
   // Products inventory state
   products: Product[];
   addProduct: (product: Omit<Product, 'id' | 'rating' | 'image'>) => void;
@@ -38,6 +38,11 @@ interface CartContextType {
   setStock: (id: string, quantity: number) => void;
 }
 
+// URL ของไฟล์ products.json บน GitHub (Raw content)
+const PRODUCTS_URL =
+  'https://raw.githubusercontent.com/PhakamasChaichana/squishy-shop/master/products.json';
+
+// ใช้เป็น fallback กรณี fetch จาก GitHub ไม่สำเร็จ (เช่น ไม่มีอินเทอร์เน็ต)
 const INITIAL_PRODUCTS: Product[] = [
   {
     id: '1',
@@ -93,7 +98,24 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [products, setProducts] = useState<Product[]>(INITIAL_PRODUCTS);
+  const [products, setProducts] = useState<Product[]>([]);
+
+  // ดึงข้อมูลสินค้าจาก GitHub Raw URL ตอนแอปเปิด
+  useEffect(() => {
+    async function loadProducts() {
+      try {
+        const response = await fetch(PRODUCTS_URL);
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error('Failed to load products from GitHub:', error);
+        // ถ้าดึงจาก GitHub ไม่สำเร็จ ให้ใช้ข้อมูลสำรองแทน
+        setProducts(INITIAL_PRODUCTS);
+      }
+    }
+
+    loadProducts();
+  }, []);
 
   const addToCart = (product: { id: string; name: string; price: number; image: any }) => {
     setCart((prevCart) => {
@@ -158,13 +180,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const cartTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
-    <CartContext.Provider 
-      value={{ 
-        cart, 
-        addToCart, 
-        removeFromCart, 
-        clearCart, 
-        cartCount, 
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        cartCount,
         cartTotal,
         products,
         addProduct,

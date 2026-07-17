@@ -113,7 +113,11 @@ export default function ProductsScreen() {
                         ]}
                       >
                         <View style={styles.imageWrapper}>
-                          <Image source={product.image} style={styles.productImage} resizeMode="cover" />
+                          <Image
+                            source={typeof product.image === 'string' ? { uri: product.image } : product.image}
+                            style={styles.productImage}
+                            resizeMode="cover"
+                          />
                           <View style={[styles.stockBadge, { backgroundColor: isLowStock ? '#FF4D4D' : '#00C851' }]}>
                             <ThemedText type="smallBold" style={styles.stockBadgeText}>
                               {isLowStock ? `⚠️ Stock: ${product.stock}` : `Stock: ${product.stock}`}
