@@ -1,81 +1,62 @@
-{
-  "products": [
-    {
-      "id": "sq-001",
-      "name": "Sleepy Panda Squishy",
-      "category": "animal",
-      "price": 129,
-      "currency": "THB",
-      "stock": 42,
-      "rating": 4.8,
-      "description": "A chubby, super soft panda squishy with a light vanilla scent. Squeeze it to relax after a long day.",
-      "size": "10cm",
-      "material": "PU Foam",
-      "image": "https://picsum.photos/seed/panda-squishy/400/400",
-      "tags": ["panda", "slow-rise", "scented"]
-    },
-    {
-      "id": "sq-002",
-      "name": "Strawberry Cake Slice Squishy",
-      "category": "dessert",
-      "price": 149,
-      "currency": "THB",
-      "stock": 30,
-      "rating": 4.6,
-      "description": "A realistic strawberry cake slice squishy with a sweet strawberry fragrance. Looks almost good enough to eat.",
-      "size": "8cm",
-      "material": "PU Foam",
-      "image": "https://picsum.photos/seed/cake-squishy/400/400",
-      "tags": ["cake", "dessert", "scented"]
-    },
-    {
-      "id": "sq-003",
-      "name": "Fluffy Cloud Bun Squishy",
-      "category": "food",
-      "price": 99,
-      "currency": "THB",
-      "stock": 55,
-      "rating": 4.5,
-      "description": "An extra soft, slow-rising bread bun shaped like a fluffy cloud. Perfect for gentle stress relief.",
-      "size": "9cm",
-      "material": "PU Foam",
-      "image": "https://picsum.photos/seed/cloud-bun/400/400",
-      "tags": ["bread", "slow-rise"]
-    },
-    {
-      "id": "sq-004",
-      "name": "Mini Avocado Squishy",
-      "category": "fruit",
-      "price": 89,
-      "currency": "THB",
-      "stock": 60,
-      "rating": 4.3,
-      "description": "A tiny, cute avocado squishy that's easy to carry around. Great as a bag charm or keychain accessory.",
-      "size": "6cm",
-      "material": "PU Foam",
-      "image": "https://picsum.photos/seed/avocado-squishy/400/400",
-      "tags": ["fruit", "keychain", "mini"]
-    },
-    {
-      "id": "sq-005",
-      "name": "Galaxy Unicorn Squishy",
-      "category": "fantasy",
-      "price": 189,
-      "currency": "THB",
-      "stock": 20,
-      "rating": 4.9,
-      "description": "A beautifully colored unicorn squishy with a galaxy print design that glows faintly in the dark.",
-      "size": "12cm",
-      "material": "PU Foam",
-      "image": "https://picsum.photos/seed/unicorn-squishy/400/400",
-      "tags": ["unicorn", "glow-in-dark", "limited"]
-    }
-  ],
-  "categories": ["animal", "dessert", "food", "fruit", "fantasy"],
-  "meta": {
-    "shopName": "Squishy Shop",
-    "currencyDefault": "THB",
-    "lastUpdated": "2026-07-17",
-    "totalProducts": 5
+[
+  {
+    "id": "sq-001",
+    "name": "Sleepy Panda Squishy",
+    "price": 129,
+    "description": "A chubby, super soft panda squishy with a light vanilla scent. Squeeze it to relax after a long day.",
+    "scent": "Vanilla 🍦",
+    "riseTime": "8 - 10 seconds",
+    "rating": 4.8,
+    "image": "https://picsum.photos/seed/panda-squishy/400/400",
+    "category": "Animals",
+    "stock": 42
+  },
+  {
+    "id": "sq-002",
+    "name": "Strawberry Cake Slice Squishy",
+    "price": 149,
+    "description": "A realistic strawberry cake slice squishy with a sweet strawberry fragrance. Looks almost good enough to eat.",
+    "scent": "Sweet Strawberry 🍓",
+    "riseTime": "10 - 12 seconds",
+    "rating": 4.6,
+    "image": "https://picsum.photos/seed/cake-squishy/400/400",
+    "category": "Bakery",
+    "stock": 30
+  },
+  {
+    "id": "sq-003",
+    "name": "Fluffy Cloud Bun Squishy",
+    "price": 99,
+    "description": "An extra soft, slow-rising bread bun shaped like a fluffy cloud. Perfect for gentle stress relief.",
+    "scent": "Fresh Bread 🍞",
+    "riseTime": "6 - 8 seconds",
+    "rating": 4.5,
+    "image": "https://picsum.photos/seed/cloud-bun/400/400",
+    "category": "Bakery",
+    "stock": 55
+  },
+  {
+    "id": "sq-004",
+    "name": "Mini Avocado Squishy",
+    "price": 89,
+    "description": "A tiny, cute avocado squishy that's easy to carry around. Great as a bag charm or keychain accessory.",
+    "scent": "Fresh Avocado 🥑",
+    "riseTime": "4 - 6 seconds",
+    "rating": 4.3,
+    "image": "https://picsum.photos/seed/avocado-squishy/400/400",
+    "category": "Fruits & Animals",
+    "stock": 60
+  },
+  {
+    "id": "sq-005",
+    "name": "Galaxy Unicorn Squishy",
+    "price": 189,
+    "description": "A beautifully colored unicorn squishy with a galaxy print design that glows faintly in the dark.",
+    "scent": "Sweet Grape 🍇",
+    "riseTime": "12 - 15 seconds",
+    "rating": 4.9,
+    "image": "https://picsum.photos/seed/unicorn-squishy/400/400",
+    "category": "Fantasy",
+    "stock": 20
   }
-}
+]
