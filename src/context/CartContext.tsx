@@ -105,11 +105,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
     async function loadProducts() {
       try {
         const response = await fetch(PRODUCTS_URL);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
         setProducts(data);
       } catch (error) {
         console.error('Failed to load products from GitHub:', error);
-        // ถ้าดึงจาก GitHub ไม่สำเร็จ ให้ใช้ข้อมูลสำรองแทน
         setProducts(INITIAL_PRODUCTS);
       }
     }
